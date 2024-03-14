@@ -1,0 +1,102 @@
+﻿<MyViewBase x:TypeArguments="vm:VirtualDesktopHelperViewModel" xmlns:vm="clr-namespace:WpfLibrary1.ViewModels"  x:Class="WpfLibrary1.Views.VirtualDesktopHelper"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:local="clr-namespace:WpfLibrary1.Views" d:DataContext="{d:DesignInstance Type=vm:VirtualDesktopHelperViewModel}"
+            mc:Ignorable="d" 
+            
+            FontSize="20"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+
+        <Grid.Resources>
+
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="/WpfLibrary1;component/Assets/index.xaml"/>
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Grid.Resources>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Foreground="White" Style="{StaticResource icon}" Text="&#xE7C4;"></TextBlock>
+            <ListBox
+                Background="Transparent"
+             VerticalAlignment="Stretch"
+             SelectedValue="{Binding FocusedDesktop}" BorderThickness="0" Margin="2 1"
+             ItemsSource="{Binding VirtualDesktops}">
+                <ListBox.Resources>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Padding" Value="0" />
+                        <Setter Property="BorderThickness" Value="0 0 0 2" />
+                        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                        <Setter Property="MinWidth" Value="32" />
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#50FFFFFF"/>
+                                <Setter Property="BorderBrush" Value="Red"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#30FFFFFF"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListBox.Resources>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+
+                        <Menu  Style="{StaticResource m1}">
+
+                            <MenuItem>
+                                <MenuItem.Header>
+
+                                    <TextBox IsHitTestVisible="False" VerticalAlignment="Stretch" Text="未命名" Background="Transparent" BorderThickness="0" CaretBrush="White" Foreground="White">
+
+                                    </TextBox>
+                                </MenuItem.Header>
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <i:CallMethodAction TargetObject="{Binding}" MethodName="Switch"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                                <MenuItem.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="关闭">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <i:CallMethodAction TargetObject="{Binding}" MethodName="Remove"/>
+                                                </i:EventTrigger>
+                                                <i:EventTrigger EventName="PreviewMouseDoubleClick">
+                                                    <i:ChangePropertyAction TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=MenuItem},Path=Header}" 
+                                                                            PropertyName="IsHitTestVisible" Value="true"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </MenuItem>
+                                    </ContextMenu>
+                                </MenuItem.ContextMenu>
+                            </MenuItem>
+                        </Menu>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+
+
+            </ListBox>
+            <Menu  Style="{StaticResource m1}">
+                <Menu.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </Menu.ItemsPanel>
+                <MenuItem BorderThickness="0" FontSize="20" Foreground="White" Command="{Binding NewVDCommand}" Header="+"></MenuItem>
+            </Menu>
+        </StackPanel>
+    </Grid>
+</MyViewBase>

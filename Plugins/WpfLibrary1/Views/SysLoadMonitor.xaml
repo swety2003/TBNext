@@ -1,0 +1,67 @@
+﻿<MyViewBase x:TypeArguments="viewmodels:SysLoadViewModel"  x:Class="WpfLibrary1.Views.SysLoadMonitor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfLibrary1.Views" xmlns:viewmodels="clr-namespace:WpfLibrary1.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:SysLoadViewModel}" mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.Resources>
+
+            <ResourceDictionary Source="/WpfLibrary1;component/Assets/index.xaml"/>
+        </Grid.Resources>
+        <Menu  Style="{StaticResource m1}">
+            <MenuItem>
+                <MenuItem.Header>
+                    <StackPanel Orientation="Horizontal">
+
+                        <Border>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource icon}" Text="&#xE839;" />
+                                <TextBlock FontSize="12"
+                           HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Run>
+                        <Run.Text>
+                            <MultiBinding StringFormat="↑ {0}{1}/s ">
+                                <Binding FallbackValue="0" Path="Upload.size" />
+                                <Binding FallbackValue="k" Path="Upload.type" />
+                            </MultiBinding>
+                        </Run.Text>
+                    </Run>
+                    <LineBreak></LineBreak>
+                    <Run>
+                        <Run.Text>
+                            <MultiBinding StringFormat="↓ {0}{1}/s ">
+                                <Binding FallbackValue="0" Path="Download.size" />
+                                <Binding FallbackValue="k" Path="Download.type" />
+                            </MultiBinding>
+                        </Run.Text>
+                    </Run>
+
+                                </TextBlock>
+                            </StackPanel>
+                        </Border>
+
+
+                        <Border>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource icon}" Text="&#xE950;" />
+                                <TextBlock FontSize="12"
+                           HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Run Text="{Binding RamLoad,StringFormat=RAM:{0}%}"></Run>
+                    <LineBreak></LineBreak>
+                    <Run Text="{Binding CpuLoad,StringFormat=CPU:{0}%}"></Run>
+
+                                </TextBlock>
+
+                                <!-- <TextBlock Classes="icon" Text="&#xe322;" /> -->
+                                <TextBlock  />
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
+                </MenuItem.Header>
+            </MenuItem>
+        </Menu>
+    </Grid>
+</MyViewBase>

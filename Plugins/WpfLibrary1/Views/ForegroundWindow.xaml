@@ -1,0 +1,31 @@
+﻿<MyViewBase x:TypeArguments="viewmodels:ForegroundViewModel"  x:Class="WpfLibrary1.Views.ForegroundWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfLibrary1.Views" xmlns:viewmodels="clr-namespace:WpfLibrary1.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:ForegroundViewModel}"
+            mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <Grid>
+        <Grid.Resources>
+
+            <ResourceDictionary Source="/WpfLibrary1;component/Assets/index.xaml"/>
+        </Grid.Resources>
+        <Menu  Style="{StaticResource m1}">
+            <MenuItem>
+                <MenuItem.Header>
+
+                    <DockPanel Margin="0 0 4 0">
+                        <Grid>
+                            <TextBlock Visibility="Collapsed" Style="{StaticResource icon}" DockPanel.Dock="Left" Opacity=".8" Margin="4 0" VerticalAlignment="Center" Text="&#xE737;" />
+                            <Image Margin="8" Source="{Binding Icon}"/>
+                        </Grid>
+                        <TextBlock MaxWidth="400" TextTrimming="CharacterEllipsis" Text="{Binding Data.title}" VerticalAlignment="Center" />
+
+                    </DockPanel>
+                </MenuItem.Header>
+            </MenuItem>
+        </Menu>
+    </Grid>
+</MyViewBase>

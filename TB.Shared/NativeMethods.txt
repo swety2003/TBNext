@@ -1,0 +1,5 @@
+﻿RegisterWindowMessage
+SHAppBarMessage
+GetForegroundWindow
+GetShellWindow
+GetDesktopWindow

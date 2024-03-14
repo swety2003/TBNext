@@ -1,0 +1,21 @@
+﻿<MyViewBase x:TypeArguments="vm:ClockViewModel" xmlns:vm="clr-namespace:WpfLibrary1.ViewModels"  x:Class="WpfLibrary1.Views.ClockView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfLibrary1.Views"
+             mc:Ignorable="d" 
+            FontSize="20">
+    <Grid>
+        <Grid.Resources>
+
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="/WpfLibrary1;component/Assets/index.xaml"/>
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Grid.Resources>
+        <TextBlock Foreground="White" Text="{Binding NowTime,StringFormat={}{0:HH:mm}}" VerticalAlignment="Center" />
+
+    </Grid>
+</MyViewBase>

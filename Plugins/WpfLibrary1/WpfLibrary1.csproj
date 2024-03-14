@@ -1,0 +1,53 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
+	  <BaseOutputPath>..\..\build\Plugins</BaseOutputPath>
+	  <Platforms>AnyCPU;x64</Platforms>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+	  <ProjectReference Include="..\..\TB.Shared\TB.Shared.csproj">
+		  <Private>false</Private>
+		  <ExcludeAssets>runtime</ExcludeAssets>
+	  </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!--<PackageReference Include="Slions.VirtualDesktop" Version="6.6.0" />-->
+
+	  <PackageReference Include="Microsoft.Windows.CsWin32" Version="0.3.49-beta">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
+
+	  <PackageReference Include="System.Drawing.Common" Version="8.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="CZGL.SystemInfo">
+      <HintPath>..\..\..\YASB-CS\Plugins\TestPLugin\vendor\CZGL.SystemInfo\CZGL.SystemInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="VirtualDesktop">
+      <HintPath>lib\VirtualDesktop.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\BatteryMonitor.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\SysLoadMonitor.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+</Project>
